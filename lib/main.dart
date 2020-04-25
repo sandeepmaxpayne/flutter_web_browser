@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter_browser_app/widget/menu.dart';
+import 'package:flutter_browser_app/widget/navigationControls.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() => runApp(MaterialApp(
@@ -48,8 +49,13 @@ class _BrowserState extends State<Browser> {
       appBar: AppBar(
         title: const Text('Wiki Explorer'),
         actions: <Widget>[
-          //  NavigationControls(),
-          //Menu(),
+          NavigationControls(
+            webViewController: _controller.future,
+          ),
+          Menu(
+            accessFavorite: () => _favorite,
+            webViewController: _controller.future,
+          ),
         ],
       ),
       body: WebView(
